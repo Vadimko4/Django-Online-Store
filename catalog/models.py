@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 
 
@@ -10,10 +11,10 @@ class Product(models.Model):
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, verbose_name='Категория',
                                  help_text='Введите категорию продукта', blank=True, null=True, related_name='products')
     price = models.IntegerField(blank=False, null=False, verbose_name='Цена', help_text='Введите цену продукта')
-    created_at = models.DateField(blank=False, null=False, verbose_name='Дата создания',
-                                  help_text='Укажите дату создания')
-    updated_at = models.DateField(blank=False, null=False, default=created_at, verbose_name='Дата изменения',
-                                  help_text='Укажите дату изменения')
+    created_at = models.DateField(blank=False, null=False, default=datetime.date.today,
+                                  verbose_name='Дата создания', help_text='Укажите дату создания')
+    updated_at = models.DateField(blank=False, null=False, default=datetime.date.today,
+                                  verbose_name='Дата изменения', help_text='Укажите дату изменения')
 
     class Meta:
         verbose_name = 'Продукт'
