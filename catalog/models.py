@@ -11,9 +11,9 @@ class Product(models.Model):
                                  help_text='Введите категорию продукта', blank=True, null=True, related_name='products')
     price = models.IntegerField(blank=False, null=False, verbose_name='Цена', help_text='Введите цену продукта')
     created_at = models.DateField(blank=False, null=False, verbose_name='Дата создания',
-                                    help_text='Укажите дату создания')
+                                  help_text='Укажите дату создания')
     updated_at = models.DateField(blank=False, null=False, default=created_at, verbose_name='Дата изменения',
-                                    help_text='Укажите дату изменения')
+                                  help_text='Укажите дату изменения')
 
     class Meta:
         verbose_name = 'Продукт'
