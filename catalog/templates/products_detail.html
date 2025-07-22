@@ -9,7 +9,7 @@
             </div>
             <div class="card-body">
                 <h1 class="card-title pricing-card-title">₽ {{ product.price }}</h1>
-                <img src="{{ product.photo | media_filter }}" alt="{{ product.name }}" width="200">
+                <img src="{{ product.photo | media_filter }}" alt="{{ product.name }}" height="200">
                 <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                     <li>Категория: {{ product.category }}</li>
                     <li>Описание: {{ product.description }}</li>
