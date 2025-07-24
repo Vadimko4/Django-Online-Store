@@ -5,12 +5,14 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from blog.models import Blog_record
 
 
-# class ContactsView(TemplateView):
-#     template_name = 'catalog/contacts.html'
-
-
 class RecordListView(ListView):
     model = Blog_record
+
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        self.object.views_counter += 1
+        self.object.save()
+        return self.object
 
 
 class RecordDetailView(DetailView):
