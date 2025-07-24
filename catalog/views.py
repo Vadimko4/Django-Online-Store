@@ -4,8 +4,6 @@ from django.views.generic import ListView, DetailView, TemplateView
 from catalog.models import Product
 
 
-# def contacts(request):
-#     return render(request, 'catalog/contacts.html')
 class ContactsView(TemplateView):
     template_name = 'catalog/contacts.html'
 
