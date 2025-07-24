@@ -12,9 +12,11 @@
                 <img src="{{ object.preview | media_filter }}" alt="photo" height="400"
                      style="float: left; margin-right: 10px; margin-left: 10px;">
                 <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                    <li>Описание: {{ object.content }}</li>
+                    <li>{{ object.content }}</li>
                 </ul>
                 <a class="btn btn-outline-primary" href="{% url 'blog:article_list' %}" role="button">Назад</a>
+                <a class="btn btn-outline-primary" href="{% url 'blog:article_update' article.pk %}" role="button">Изменить</a>
+                <a class="btn btn-outline-primary" href="{% url 'blog:article_delete' article.pk %}" role="button">Удалить</a>
             </div>
         </div>
     </div>

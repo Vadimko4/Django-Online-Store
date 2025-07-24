@@ -2,16 +2,19 @@
 {% load my_tags %}
 {% block content %}
 <div class="row text-center">
+    <p>
+        <a class="btn btn-primary" href="{% url 'blog:article_create' %}" role="button">Создать статью</a>
+    </p>
     {% for article in object_list %}
     <div class="col-6">
         <div class="card mb-4 box-shadow">
             <div class="card-header">
-                <h4 class="my-0 font-weight-normal">{{ article.title | truncatechars:20 }}</h4>
+                <h4 class="my-0 font-weight-normal">{{ article.title | truncatechars:40 }}</h4>
             </div>
             <div class="card-body">
                 <img src="{{ article.preview | media_filter }}" alt="photo" height="200">
                 <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                    <li>Описание: {{ article.content | truncatechars:100 }}</li>
+                    <li>{{ article.content | truncatechars:200 }}</li>
                 </ul>
                 <a class="btn btn-outline-primary" href="{% url 'blog:article_detail' article.pk %}" role="button">Подробнее</a>
             </div>
