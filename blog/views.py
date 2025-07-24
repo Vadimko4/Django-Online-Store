@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from blog.models import Blog_record
@@ -29,6 +29,9 @@ class RecordUpdateView(UpdateView):
     model = Blog_record
     fields = ("title", "content", "preview", "published")
     success_url = reverse_lazy('blog:record_list')
+
+    def get_success_url(self):
+        return reverse('blog:record_detail', args=[self.kwargs.get('pk')])
 
 
 class RecordDeleteView(DeleteView):
