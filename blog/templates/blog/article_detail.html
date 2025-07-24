@@ -16,9 +16,17 @@
                 <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                     <li>{{ object.content }}</li>
                 </ul>
-                <a class="btn btn-outline-primary" href="{% url 'blog:article_list' %}" role="button">Назад</a>
-                <a class="btn btn-outline-primary" href="{% url 'blog:article_update' article.pk %}" role="button">Изменить</a>
-                <a class="btn btn-outline-primary" href="{% url 'blog:article_delete' article.pk %}" role="button">Удалить</a>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a class="btn btn-outline-primary" href="{% url 'blog:article_list' %}" role="button">Назад</a>
+                        <a class="btn btn-outline-primary" href="{% url 'blog:article_update' article.pk %}"
+                           role="button">Изменить</a>
+                        <a class="btn btn-outline-primary" href="{% url 'blog:article_delete' article.pk %}"
+                           role="button">Удалить</a>
+                    </div>
+                    <small class="text-muted">просмотров: {{ object.views_counter }}</small>
+                </div>
             </div>
         </div>
     </div>
