@@ -8,16 +8,19 @@ from blog.models import Blog_record
 class RecordListView(ListView):
     model = Blog_record
 
-    def get_object(self, queryset=None):
-        self.object = super().get_object(queryset)
-        self.object.views_counter += 1
-        self.object.save()
-        return self.object
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(published=True)
 
 
 class RecordDetailView(DetailView):
     model = Blog_record
 
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        self.object.views_counter += 1
+        self.object.save()
+        return self.object
 
 class RecordCreateView(CreateView):
     model = Blog_record
