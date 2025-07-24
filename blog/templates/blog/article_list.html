@@ -2,8 +2,9 @@
 {% load my_tags %}
 {% block content %}
 <div class="row text-center">
+    <h5 class="display-6">Вы находитесь в разделе "БЛОГ"</h5>
     <p>
-        <a class="btn btn-primary" href="{% url 'blog:article_create' %}" role="button">Создать статью</a>
+        <a class="btn btn-outline-primary" href="{% url 'blog:article_create' %}" role="button">Создать статью</a>
     </p>
     {% for article in object_list %}
     <div class="col-6">
