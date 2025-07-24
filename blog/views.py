@@ -8,9 +8,9 @@ from blog.models import Article
 class ArticleListView(ListView):
     model = Article
 
-    # def get_queryset(self):
-    #     queryset = super().get_queryset()
-    #     return queryset.filter(published=True)
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(published=True)
 
 
 class ArticleDetailView(DetailView):
