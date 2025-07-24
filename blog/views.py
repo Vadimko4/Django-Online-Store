@@ -2,19 +2,19 @@ from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from blog.models import Blog_record
+from blog.models import Article
 
 
-class RecordListView(ListView):
-    model = Blog_record
+class ArticleListView(ListView):
+    model = Article
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(published=True)
+    # def get_queryset(self):
+    #     queryset = super().get_queryset()
+    #     return queryset.filter(published=True)
 
 
-class RecordDetailView(DetailView):
-    model = Blog_record
+class ArticleDetailView(DetailView):
+    model = Article
 
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
@@ -22,21 +22,21 @@ class RecordDetailView(DetailView):
         self.object.save()
         return self.object
 
-class RecordCreateView(CreateView):
-    model = Blog_record
+class ArticleCreateView(CreateView):
+    model = Article
     fields = ("title", "content", "preview", "published")
-    success_url = reverse_lazy('blog:record_list')
+    success_url = reverse_lazy('blog:article_list')
 
 
-class RecordUpdateView(UpdateView):
-    model = Blog_record
+class ArticleUpdateView(UpdateView):
+    model = Article
     fields = ("title", "content", "preview", "published")
-    success_url = reverse_lazy('blog:record_list')
+    success_url = reverse_lazy('blog:article_list')
 
     def get_success_url(self):
-        return reverse('blog:record_detail', args=[self.kwargs.get('pk')])
+        return reverse('blog:article_detail', args=[self.kwargs.get('pk')])
 
 
-class RecordDeleteView(DeleteView):
-    model = Blog_record
-    success_url = reverse_lazy('blog:record_list')
+class ArticleDeleteView(DeleteView):
+    model = Article
+    success_url = reverse_lazy('blog:article_list')

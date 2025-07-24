@@ -1,10 +1,10 @@
 from django.db import models
 
 
-class Blog_record(models.Model):
+class Article(models.Model):
     title = models.CharField(max_length=150, verbose_name='Заголовок', help_text='Введите заголовок')
     content = models.TextField(blank=False, null=False, verbose_name='Содержимое', help_text='Введите текст')
-    preview = models.ImageField(upload_to='blog_records/photo', blank=True, null=True, verbose_name='Изображение',
+    preview = models.ImageField(upload_to='articles/photo', blank=True, null=True, verbose_name='Изображение',
                               help_text='Загрузите изображение')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания',
                                       help_text='Укажите дату создания')
@@ -13,8 +13,8 @@ class Blog_record(models.Model):
                                                 help_text='Укажите количество просмотров', default=0)
 
     class Meta:
-        verbose_name = 'Запись блога'
-        verbose_name_plural = 'Записи блога'
+        verbose_name = 'Статья'
+        verbose_name_plural = 'Статьи'
         ordering = ['title']
 
     def __str__(self):
