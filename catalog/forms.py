@@ -34,3 +34,9 @@ class ProductForm(StyleFormMixin, ModelForm):
         if any(minus_word.lower() in product_description.lower() for minus_word in minus_words):
             raise ValidationError(f"В описании продукта нельзя использовать: {', '.join(minus_words)}")
         return product_description
+
+    def clean_price(self):
+        product_price = self.cleaned_data['price']
+        if product_price < 0:
+            raise ValidationError("Цена продукта не может быть отрицательной")
+        return product_price
