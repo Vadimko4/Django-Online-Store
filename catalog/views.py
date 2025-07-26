@@ -29,7 +29,7 @@ class ProductUpdateView(UpdateView):
     form_class = ProductForm
 
     def get_success_url(self):
-        return reverse('catalog:products_detail', args=[self.kwargs.get('pk')])
+        return reverse('catalog:product_detail', args=[self.kwargs.get('pk')])
 
 class ProductDeleteView(DeleteView):
     model = Product

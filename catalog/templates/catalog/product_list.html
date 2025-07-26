@@ -17,7 +17,7 @@
                 <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                     <li>Описание: {{ product.description | truncatechars:100 }}</li>
                 </ul>
-                <a class="btn btn-outline-primary" href="{% url 'catalog:products_detail' product.pk %}" role="button">Подробнее</a>
+                <a class="btn btn-outline-primary" href="{% url 'catalog:product_detail' product.pk %}" role="button">Подробнее</a>
             </div>
         </div>
     </div>
