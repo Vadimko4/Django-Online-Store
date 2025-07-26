@@ -1,0 +1,32 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="row text-center">
+    <h5 class="display-6">Вы находитесь в разделе "БЛОГ"</h5>
+    <p>
+        <a class="btn btn-outline-primary" href="{% url 'blog:article_create' %}" role="button">Создать статью</a>
+    </p>
+    {% for article in object_list %}
+    <div class="col-6">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">{{ article.title | truncatechars:40 }}</h4>
+            </div>
+            <div class="card-body">
+                <img src="{{ article.preview | media_filter }}" alt="photo" height="200">
+                <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                    <li>{{ article.content | truncatechars:200 }}</li>
+                </ul>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a class="btn btn-outline-primary" href="{% url 'blog:article_detail' article.pk %}"
+                           role="button">Подробнее</a>
+                    </div>
+                    <small class="text-muted">просмотров: {{ article.views_counter }}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row text-center">
+        <h5 class="display-6 mb-5">Вы находитесь в разделе "БЛОГ"</h5>
+        <div class="col-3"></div>
+        <div class="col-6">
+            <form class="row" method="post" enctype="multipart/form-data">
+                <div class="card">
+                    <p class="card-text">Действительно хотите удалить статью: "{{ object.title }}"</p>
+                    <div class="card-body">
+                        {% csrf_token %}
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="submit" class="btn btn-outline-primary">Удалить</button>
+                            <a class="btn btn-outline-primary" href="{% url 'blog:article_list' %}" role="button">Отменить</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
