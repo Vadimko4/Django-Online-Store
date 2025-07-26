@@ -16,7 +16,11 @@
                     <li>Зарегистрирован: {{ object.created_at }}</li>
                     <li>Обновлён: {{ object.updated_at }}</li>
                 </ul>
-                <a class="btn btn-outline-primary" href="{% url 'catalog:home' %}" role="button">В каталог</a>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a class="btn btn-outline-primary" href="{% url 'catalog:home' %}" role="button">В каталог</a>
+                    <a class="btn btn-outline-primary" href="{% url 'catalog:product_update' product.pk %}"
+                       role="button">Изменить</a>
+                </div>
             </div>
         </div>
     </div>
