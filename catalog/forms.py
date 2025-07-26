@@ -25,6 +25,12 @@ class ProductForm(StyleFormMixin, ModelForm):
 
     def clean_name(self):
         product_name = self.cleaned_data['name']
-        if any(minus_word in product_name for minus_word in minus_words):
+        if any(minus_word.lower() in product_name.lower() for minus_word in minus_words):
             raise ValidationError(f"В названии продукта нельзя использовать: {', '.join(minus_words)}")
         return product_name
+
+    def clean_description(self):
+        product_description = self.cleaned_data['description']
+        if any(minus_word.lower() in product_description.lower() for minus_word in minus_words):
+            raise ValidationError(f"В описании продукта нельзя использовать: {', '.join(minus_words)}")
+        return product_description
