@@ -4,13 +4,12 @@ from django.db import models
 
 class User(AbstractUser):
     email = models.EmailField(unique=True, verbose_name="Email")
-
+    avatar = models.ImageField(upload_to="users/avatars/", verbose_name="Аватар", blank=True, null=True,
+                               help_text="Загрузите свой аватар")
     phone = models.CharField(max_length=15, verbose_name="Телефон", blank=True, null=True,
                              help_text="Введите номер телефона")
-    tg_name = models.CharField(max_length=50, verbose_name="Ник в телеграм", blank=True, null=True,
-                             help_text="Введите ник в телеграм")
-    avatar = models.ImageField(upload_to="users/avatars/", verbose_name="Аватар", blank=True, null=True,
-                             help_text="Загрузите свой аватар")
+    country = models.CharField(max_length=50, verbose_name="Страна", blank=True, null=True,
+                             help_text="Введите страну")
 
     token = models.CharField(max_length=100, verbose_name="Token", blank=True, null=True)
 
