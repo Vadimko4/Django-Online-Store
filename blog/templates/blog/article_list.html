@@ -3,9 +3,11 @@
 {% block content %}
 <div class="row text-center">
     <h5 class="display-6">Вы находитесь в разделе "БЛОГ"</h5>
+    {% if user.is_authenticated %}
     <p>
         <a class="btn btn-outline-primary" href="{% url 'blog:article_create' %}" role="button">Создать статью</a>
     </p>
+    {% endif %}
     {% for article in object_list %}
     <div class="col-6">
         <div class="card mb-4 box-shadow">
