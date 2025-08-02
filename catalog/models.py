@@ -15,6 +15,7 @@ class Product(models.Model):
                                   verbose_name='Дата создания', help_text='Укажите дату создания')
     updated_at = models.DateField(blank=False, null=False, default=datetime.date.today,
                                   verbose_name='Дата изменения', help_text='Укажите дату изменения')
+    published = models.BooleanField(default=False, verbose_name='Опубликовано', help_text='Введите статус публикации')
 
     class Meta:
         verbose_name = 'Продукт'
