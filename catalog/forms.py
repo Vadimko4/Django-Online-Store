@@ -1,5 +1,3 @@
-from itertools import product
-
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm, BooleanField
 
@@ -40,3 +38,9 @@ class ProductForm(StyleFormMixin, ModelForm):
         if product_price < 0:
             raise ValidationError("Цена продукта не может быть отрицательной")
         return product_price
+
+
+class ProductModeratorForm(StyleFormMixin, ModelForm):
+    class Meta:
+        model = Product
+        fields = ('published', )
