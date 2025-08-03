@@ -61,3 +61,7 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
             return super().dispatch(*args, **kwargs)
 
         raise PermissionDenied
+
+
+class CategoryDetailView(LoginRequiredMixin, DetailView):
+    model = Category
