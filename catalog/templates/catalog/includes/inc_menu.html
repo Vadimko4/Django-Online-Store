@@ -12,7 +12,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="nav-link active" href="/">Все категории</a></li>
                         {% for category in categories %}
-                            <li><a class="nav-link active" href="{% url 'catalog:category_list' category.pk %}">{{ category.name}}</a></li>
+                            <li><a class="nav-link active" href="{% url 'catalog:category_detail' category.pk %}">{{ category.name}}</a></li>
                         {% endfor %}
                     </ul>
                 </div>

@@ -7,9 +7,20 @@ from config.settings import CACHE_ENABLE
 def get_products_from_cache():
     if not CACHE_ENABLE:
         return Product.objects.all()
-    key = "dogs_list"
+    key = "products_list"
     products = cache.get(key)
     if products is None:
-        dogs = Product.objects.all()
-        cache.set(key, dogs)
+        products = Product.objects.all()
+        cache.set(key, products)
+    return products
+
+
+def get_category_products_from_cache(category_id):
+    if not CACHE_ENABLE:
+        return Product.objects.all().filter(category_id=category_id)
+    key = f"products_list_{category_id}"
+    products = cache.get(key)
+    if products is None:
+        products = Product.objects.all().filter(category_id=category_id)
+        cache.set(key, products)
     return products
