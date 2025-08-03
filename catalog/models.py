@@ -1,6 +1,8 @@
 import datetime
 from django.db import models
 
+from users.models import User
+
 
 class Product(models.Model):
     name = models.CharField(max_length=150, verbose_name='Наименование', help_text='Введите наименование продукта')
@@ -15,11 +17,18 @@ class Product(models.Model):
                                   verbose_name='Дата создания', help_text='Укажите дату создания')
     updated_at = models.DateField(blank=False, null=False, default=datetime.date.today,
                                   verbose_name='Дата изменения', help_text='Укажите дату изменения')
+    published = models.BooleanField(default=False, verbose_name='Опубликовано', help_text='Введите статус публикации')
+    owner = models.ForeignKey(User, verbose_name="Владелец", help_text="Укажите владельца продукта", blank=True,
+                              null=True, on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
         ordering = ['category', 'name']
+        permissions = [
+            ("can_unpublish_product", "can unpublish product"),
+        ]
+
 
     def __str__(self):
         return self.name

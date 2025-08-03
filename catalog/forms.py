@@ -1,5 +1,3 @@
-from itertools import product
-
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm, BooleanField
 
@@ -21,7 +19,7 @@ class StyleFormMixin:
 class ProductForm(StyleFormMixin, ModelForm):
     class Meta:
         model = Product
-        exclude = ('created_at', 'updated_at',)
+        exclude = ('created_at', 'updated_at', 'owner',)
 
     def clean_name(self):
         product_name = self.cleaned_data['name']
@@ -40,3 +38,9 @@ class ProductForm(StyleFormMixin, ModelForm):
         if product_price < 0:
             raise ValidationError("Цена продукта не может быть отрицательной")
         return product_price
+
+
+class ProductModeratorForm(StyleFormMixin, ModelForm):
+    class Meta:
+        model = Product
+        fields = ('published', )
