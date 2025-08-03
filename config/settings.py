@@ -58,6 +58,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'catalog.context_processors.categories_processor',
             ],
         },
     },
@@ -127,7 +128,7 @@ AUTH_USER_MODEL = 'users.User'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-LOGIN_URL = "users:login" # Так будет происходить переброс анонимного пользователя сразу на страницу авторизации
+LOGIN_URL = "users:login"  # Так будет происходить переброс анонимного пользователя сразу на страницу авторизации
 
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
