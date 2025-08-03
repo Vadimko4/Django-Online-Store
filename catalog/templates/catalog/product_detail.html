@@ -19,10 +19,12 @@
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <a class="btn btn-outline-primary" href="{% url 'catalog:home' %}" role="button">Каталог</a>
                     {% if user.is_authenticated %}
-                    <a class="btn btn-outline-primary" href="{% url 'catalog:product_update' product.pk %}"
-                       role="button">Изменить</a>
-                    <a class="btn btn-outline-primary" href="{% url 'catalog:product_delete' product.pk %}"
-                       role="button">Удалить</a>
+                        {% if perms.catalog.can_unpublish_product and perms.catalog.delete_product %} <!--or user == product.owner %}-->
+                            <a class="btn btn-outline-primary" href="{% url 'catalog:product_update' product.pk %}"
+                               role="button">Изменить</a>
+                            <a class="btn btn-outline-primary" href="{% url 'catalog:product_delete' product.pk %}"
+                               role="button">Удалить</a>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>
