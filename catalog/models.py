@@ -18,8 +18,8 @@ class Product(models.Model):
     updated_at = models.DateField(blank=False, null=False, default=datetime.date.today,
                                   verbose_name='Дата изменения', help_text='Укажите дату изменения')
     published = models.BooleanField(default=False, verbose_name='Опубликовано', help_text='Введите статус публикации')
-    # owner = models.ForeignKey(User, verbose_name="Владелец", help_text="Укажите владельца продукта", blank=True,
-    #                           null=True, on_delete=models.SET_NULL)
+    owner = models.ForeignKey(User, verbose_name="Владелец", help_text="Укажите владельца продукта", blank=True,
+                              null=True, on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name = 'Продукт'

@@ -25,6 +25,10 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
     form_class = ProductForm
     success_url = reverse_lazy('catalog:home')
 
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+
 
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
@@ -35,10 +39,8 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_form_class(self):
         user = self.request.user
-        if user.is_superuser:
+        if user.is_superuser or user == self.object.owner:
             return ProductForm
-        # if user == self.object.owner:
-        #     return ProductForm
         if user.has_perm("catalog.can_unpublish_product"): # and user.has_perm("dogs.can_edit_description"):
             return ProductModeratorForm
         raise PermissionDenied
@@ -49,6 +51,9 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
 
     def dispatch(self, *args, **kwargs):
         user = self.request.user
-        if not user.has_perm('catalog.delete_product'):  # или другое нужное тебе право
-            raise PermissionDenied
-        return super().dispatch(*args, **kwargs)
+        product = self.get_object()
+
+        if product.owner == user or user.has_perm('catalog.delete_product'):
+            return super().dispatch(*args, **kwargs)
+
+        raise PermissionDenied
